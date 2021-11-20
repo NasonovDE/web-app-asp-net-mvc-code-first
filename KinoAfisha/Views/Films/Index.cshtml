@@ -1,0 +1,34 @@
+﻿@using KinoAfisha.Models
+@using WebAppAspNetMvcCodeFirst.Models
+@using WebAppAspNetMvcCodeFirst.Extensions
+@model List<Film>
+
+<h3>Фильм</h3>
+
+@Html.ActionLink("Добавить запись", "Create", "Films")
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Название фильма</th>
+            <th>Возрастное ограничение</th>
+            <th>Обложка фильма</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var film in Model)
+        {
+            <tr>
+                <td>@film.NameFilm</td>
+                <td>@film.FilmYears.GetDisplayValue()</td>
+                <td><img src="/Films/GetImage/@film.Id" style="max-width: 100px; max-height: 200px;" /></td>
+
+                <td>
+                    @Html.ActionLink("Удалить", "Delete", "Films", new { id = film.Id }, new { })
+                    @Html.ActionLink("Изменить", "Edit", "Films", new { id = film.Id }, new { })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@using KinoAfisha.Models
+@model List<KinoAfisha.Models.Kino>
+
+<h3>Афиша</h3>
+
+@Html.ActionLink("Добавить запись", "Create", "Kinos")
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Цена</th>
+            <th>Билетов в наличии</th>
+            <th>Место показа</th>
+            <th>Дата</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var kino in Model)
+        {
+        <tr>
+            <td>@kino.Name</td>
+            <td>@kino.Price</td>
+            <td>@kino.NumberOfBilets</td>
+            <td>@kino.Place</td>
+            <td>@kino.NextArrivalDate</td>
+            <td>
+                @Html.ActionLink("Удалить", "Delete", "Kinos", new { id = kino.Id }, new { })
+                @Html.ActionLink("Изменить", "Edit", "Kinos", new { id = kino.Id }, new { })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

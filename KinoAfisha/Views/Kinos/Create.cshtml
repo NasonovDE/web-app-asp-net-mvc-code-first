@@ -1,0 +1,11 @@
+﻿@using KinoAfisha.Models;
+@model Kino
+
+<h3>Кино</h3>
+
+@using (Html.BeginForm("Create", "Kinos", FormMethod.Post))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Сохранить" />
+    @Html.ActionLink("Отменить", "Index", "Kinos")
+}
