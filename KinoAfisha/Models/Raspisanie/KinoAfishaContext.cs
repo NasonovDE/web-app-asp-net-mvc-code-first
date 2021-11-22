@@ -7,8 +7,13 @@ namespace KinoAfisha.Models
 
         public DbSet<Film> Films { get; set; }
         public DbSet<Kino> Kinos { get; set; }
-        public DbSet<FilmCover> FilmCover { get; set; }
+        public DbSet<FilmCover> FilmCovers { get; set; }
         public KinoAfishaContext() : base("KinoAfishaEntity")
         { }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Film>().HasOptional(x => x.FilmCover).WithRequired().WillCascadeOnDelete(true);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

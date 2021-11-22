@@ -15,8 +15,8 @@ namespace KinoAfisha.Controllers
         {
             var db = new KinoAfishaContext();
             var kino = db.Kinos.ToList();
-            
-               
+
+
             return View(kino);
         }
 
@@ -38,8 +38,14 @@ namespace KinoAfisha.Controllers
             var db = new KinoAfishaContext();
             model.CreateAt = DateTime.Now;
 
+            if (model.FilmIds != null && model.FilmIds.Any())
+            {
+                var film = db.Films.Where(s => model.FilmIds.Contains(s.Id)).ToList();
+                model.Films = film;
+            }
 
-          
+            
+
             db.Kinos.Add(model);
             db.SaveChanges();
 
@@ -65,7 +71,7 @@ namespace KinoAfisha.Controllers
         public ActionResult Edit(int id)
         {
             var db = new KinoAfishaContext();
-            var kino =  db.Kinos.FirstOrDefault(x => x.Id == id);
+            var kino = db.Kinos.FirstOrDefault(x => x.Id == id);
             if (kino == null)
                 return RedirectPermanent("/Kinos/Index");
 
@@ -94,20 +100,24 @@ namespace KinoAfisha.Controllers
             return RedirectPermanent("/Kinos/Index");
         }
 
-    
+
         private void MappingKino(Kino sourse, Kino destination, KinoAfishaContext db)
         {
-          
-             
 
-            destination.NameId = sourse.NameId;
-            destination.Film = sourse.Film;
             destination.Price = sourse.Price;
             destination.NumberOfBilets = sourse.NumberOfBilets;
             destination.Cinema = sourse.Cinema;
             destination.NextArrivalDate = sourse.NextArrivalDate;
+
+            //if (destination.Films != null)
+            //    destination.Films.Clear();
+
+            if (sourse.FilmIds != null && sourse.FilmIds.Any())
+                destination.Films = db.Films.Where(s => sourse.FilmIds.Contains(s.Id)).ToList();
+
             
-           
         }
+
+        
     }
 }

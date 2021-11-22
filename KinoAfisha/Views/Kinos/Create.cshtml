@@ -3,7 +3,7 @@
 
 <h3>Кино</h3>
 
-@using (Html.BeginForm("Create", "Kinos", FormMethod.Post))
+@using (Html.BeginForm("Create", "Kinos", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
     @Html.EditorForModel()
     <input type="submit" value="Сохранить" />

@@ -111,9 +111,9 @@ namespace KinoAfisha.Controllers
 
             if (sourse.FilmCoverFile != null)
             {
-                var image = db.FilmCover.FirstOrDefault(x => x.Id == sourse.Id);
+                var image = db.FilmCovers.FirstOrDefault(x => x.Id == sourse.Id);
                 if (image != null)
-                    db.FilmCover.Remove(image);
+                    db.FilmCovers.Remove(image);
 
                 var data = new byte[sourse.FilmCoverFile.ContentLength];
                 sourse.FilmCoverFile.InputStream.Read(data, 0, sourse.FilmCoverFile.ContentLength);
@@ -132,7 +132,7 @@ namespace KinoAfisha.Controllers
         public ActionResult GetImage(int id)
         {
             var db = new KinoAfishaContext();
-            var image = db.FilmCover.FirstOrDefault(x => x.Id == id);
+            var image = db.FilmCovers.FirstOrDefault(x => x.Id == id);
             if (image == null)
             {
                 FileStream fs = System.IO.File.OpenRead(Server.MapPath(@"~/Content/Images/not-foto.png"));

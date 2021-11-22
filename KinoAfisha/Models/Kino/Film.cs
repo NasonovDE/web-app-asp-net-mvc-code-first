@@ -67,6 +67,13 @@ namespace KinoAfisha.Models
         [NotMapped]
         public HttpPostedFileBase FilmCoverFile { get; set; }
 
-      
+        /// <summary>
+        /// Кино название фильмов
+        /// </summary> 
+        [ScaffoldColumn(false)]
+        public virtual ICollection<Kino> Kinos{ get; set; }
     }
 }
+
+      
+    

@@ -24,14 +24,14 @@ namespace KinoAfisha.Models
         /// <summary>
         /// Название
         /// </summary> 
+        ///  [ScaffoldColumn(false)] 
+        public virtual ICollection<Film> Films { get; set; }
         [ScaffoldColumn(false)]
-        public int NameId { get; set; }
-        [ScaffoldColumn(false)]
-
-        public virtual Film Film { get; set; }
+        public List<int> FilmIds { get; set; }
+       
         [Display(Name = "Название", Order = 5)]
-        [UIHint("DropDownList")]
-        [TargetProperty("NameId")]
+        [UIHint("MultipleDropDownList")]
+        [TargetProperty("FilmIds")]
         [NotMapped]
         public IEnumerable<SelectListItem> FilmDictionary
         {
@@ -42,9 +42,9 @@ namespace KinoAfisha.Models
 
                 if (query != null)
                 {
-
+                    var Ids = query.Where(s => s.Kinos.Any(ss => ss.Id == Id)).Select(s => s.Id).ToList();
                     var dictionary = new List<SelectListItem>();
-                    dictionary.AddRange(query.OrderBy(d => d.NameFilm).ToSelectList(c => c.Id, c => c.NameFilm, c => c.Id == NameId));
+                    dictionary.AddRange(query.ToSelectList(c => c.Id, c => $"{c.NameFilm}", c => Ids.Contains(c.Id)));
                     return dictionary;
                 }
                 return new List<SelectListItem> { new SelectListItem { Text = "", Value = "" } };
@@ -104,7 +104,7 @@ namespace KinoAfisha.Models
         /// </summary> 
         [Required]
         [Display(Name = "Дата", Order = 40)]
-        public DateTime NextArrivalDate { get; set; }
+        public DateTime? NextArrivalDate { get; set; }
 
         /// <summary>
         /// Дата создания записи
@@ -113,7 +113,7 @@ namespace KinoAfisha.Models
         public DateTime CreateAt { get; set; }
 
 
-      
+       
 
     }
 }
