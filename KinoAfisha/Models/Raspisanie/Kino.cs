@@ -24,11 +24,11 @@ namespace KinoAfisha.Models
         /// <summary>
         /// Название
         /// </summary> 
-        ///  [ScaffoldColumn(false)] 
+        [ScaffoldColumn(false)] 
         public virtual ICollection<Film> Films { get; set; }
         [ScaffoldColumn(false)]
         public List<int> FilmIds { get; set; }
-       
+        [Required]
         [Display(Name = "Название", Order = 5)]
         [UIHint("MultipleDropDownList")]
         [TargetProperty("FilmIds")]
@@ -64,7 +64,7 @@ namespace KinoAfisha.Models
         /// <summary>
         /// Количество билетов
         /// </summary> 
-        [Required]
+        
         [Display(Name = "Количество билетов", Order = 30)]
         public int NumberOfBilets { get; set; }
 
@@ -74,7 +74,7 @@ namespace KinoAfisha.Models
 
         [ScaffoldColumn(false)]
         public Cinema Cinema { get; set; }
-
+        [Required]
         [Display(Name = "Место показа", Order = 20)]
         [UIHint("DropDownList")]
         [TargetProperty("Cinema")]
@@ -103,8 +103,20 @@ namespace KinoAfisha.Models
         /// Дата
         /// </summary> 
         [Required]
-        [Display(Name = "Дата", Order = 40)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd-MM-yyyy}" )]
+        [Display(Name = "Дата сеанса", Order = 40)]
         public DateTime? NextArrivalDate { get; set; }
+
+        /// <summary>
+        /// Время Кино
+        /// </summary> 
+        [Required]
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:HH:mm}")]
+        [Display(Name = "Время сеанса", Order = 40)]
+        public DateTime? KinoTime { get; set; }
+
 
         /// <summary>
         /// Дата создания записи

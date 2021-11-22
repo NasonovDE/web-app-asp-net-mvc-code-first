@@ -5,9 +5,10 @@
 
 @using (Html.BeginForm("Edit", "Kinos", FormMethod.Post, new { @enctype = "multipart/form-data" }))
 {
+
+
     @Html.ValidationSummary();
     @Html.EditorForModel()
-    <input type="submit" value="Сохранить" />
+       <input type="submit" value="Сохранить" />
     @Html.ActionLink("Отменить", "Index", "Kinos")
 }
-  

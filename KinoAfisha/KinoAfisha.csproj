@@ -134,6 +134,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202111221702017_Init1.cs" />
+    <Compile Include="Migrations\202111221702017_Init1.designer.cs">
+      <DependentUpon>202111221702017_Init1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111221705219_Init2.cs" />
+    <Compile Include="Migrations\202111221705219_Init2.designer.cs">
+      <DependentUpon>202111221705219_Init2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202111221708154_Init3.cs" />
+    <Compile Include="Migrations\202111221708154_Init3.designer.cs">
+      <DependentUpon>202111221708154_Init3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attributes\TargetPropertyAttribute.cs" />
     <Compile Include="Models\Kino\FilmCover.cs" />
@@ -205,6 +217,17 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202111221702017_Init1.resx">
+      <DependentUpon>202111221702017_Init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111221705219_Init2.resx">
+      <DependentUpon>202111221705219_Init2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202111221708154_Init3.resx">
+      <DependentUpon>202111221708154_Init3.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
