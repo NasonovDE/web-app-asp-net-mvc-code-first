@@ -109,8 +109,8 @@ namespace KinoAfisha.Controllers
             destination.Cinema = sourse.Cinema;
             destination.NextArrivalDate = sourse.NextArrivalDate;
 
-            //if (destination.Films != null)
-            //    destination.Films.Clear();
+            if (destination.Films != null)
+                destination.Films.Clear();
 
             if (sourse.FilmIds != null && sourse.FilmIds.Any())
                 destination.Films = db.Films.Where(s => sourse.FilmIds.Contains(s.Id)).ToList();
