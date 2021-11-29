@@ -269,6 +269,6 @@ E:\СОХРАНИТЬ\КнАГУ\Кожин\ИТ\web-app-asp-net-mvc-code-first-
 E:\СОХРАНИТЬ\КнАГУ\Кожин\ИТ\web-app-asp-net-mvc-code-first-\KinoAfisha\obj\Debug\KinoAfisha.csproj.CopyComplete
 E:\СОХРАНИТЬ\КнАГУ\Кожин\ИТ\web-app-asp-net-mvc-code-first-\KinoAfisha\obj\Debug\KinoAfisha.dll
 E:\СОХРАНИТЬ\КнАГУ\Кожин\ИТ\web-app-asp-net-mvc-code-first-\KinoAfisha\obj\Debug\KinoAfisha.pdb
-E:\СОХРАНИТЬ\КнАГУ\Кожин\ИТ\web-app-asp-net-mvc-code-first-\KinoAfisha\obj\Debug\KinoAfisha.Migrations.Init2.resources
+E:\СОХРАНИТЬ\КнАГУ\Кожин\ИТ\web-app-asp-net-mvc-code-first-\KinoAfisha\obj\Debug\KinoAfisha.Migrations.Init9.resources
 E:\СОХРАНИТЬ\КнАГУ\Кожин\ИТ\web-app-asp-net-mvc-code-first-\KinoAfisha\obj\Debug\KinoAfisha.csproj.GenerateResource.cache
-E:\СОХРАНИТЬ\КнАГУ\Кожин\ИТ\web-app-asp-net-mvc-code-first-\KinoAfisha\obj\Debug\KinoAfisha.Migrations.Init3.resources
+E:\СОХРАНИТЬ\КнАГУ\Кожин\ИТ\web-app-asp-net-mvc-code-first-\KinoAfisha\obj\Debug\KinoAfisha.Migrations.Init10.resources

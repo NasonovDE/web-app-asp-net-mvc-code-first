@@ -73,7 +73,7 @@ namespace KinoAfisha.Models
         public List<int> CinemaIds { get; set; }
         [Required]
         [Display(Name = "Место показа", Order = 5)]
-        [UIHint("MultipleDropDownList")]
+        [UIHint("DropDownList")]
         [TargetProperty("CinemaIds")]
         [NotMapped]
         public IEnumerable<SelectListItem> CinemaDictionary
