@@ -9,6 +9,9 @@ namespace KinoAfisha.Models
     public class FilmCover
     {
         public int Id { get; set; }
+        public IEnumerable<HttpPostedFile> Image { get; set; }
+        public long Size { get; set; }
+        public string Path { get; set; }
         public Guid Guid { get; set; }
 
         [Required]

@@ -127,31 +127,33 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DescriptionsController.cs" />
+    <Compile Include="Controllers\CinemasController.cs" />
     <Compile Include="Controllers\FilmsController.cs" />
+    <Compile Include="Controllers\FormatsController.cs" />
     <Compile Include="Controllers\KinosController.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111221702017_Init1.cs" />
-    <Compile Include="Migrations\202111221702017_Init1.designer.cs">
-      <DependentUpon>202111221702017_Init1.cs</DependentUpon>
+    <Compile Include="Migrations\202111282126375_Init2.cs" />
+    <Compile Include="Migrations\202111282126375_Init2.designer.cs">
+      <DependentUpon>202111282126375_Init2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202111221705219_Init2.cs" />
-    <Compile Include="Migrations\202111221705219_Init2.designer.cs">
-      <DependentUpon>202111221705219_Init2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111221708154_Init3.cs" />
-    <Compile Include="Migrations\202111221708154_Init3.designer.cs">
-      <DependentUpon>202111221708154_Init3.cs</DependentUpon>
+    <Compile Include="Migrations\202111282149166_Init3.cs" />
+    <Compile Include="Migrations\202111282149166_Init3.designer.cs">
+      <DependentUpon>202111282149166_Init3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attributes\TargetPropertyAttribute.cs" />
-    <Compile Include="Models\Kino\FilmCover.cs" />
-    <Compile Include="Models\Kino\Film.cs" />
+    <Compile Include="Models\Enum\QRcode.cs" />
+    <Compile Include="Models\Raspisanie\Description.cs" />
+    <Compile Include="Models\Raspisanie\Format.cs" />
+    <Compile Include="Models\Raspisanie\FilmCover.cs" />
+    <Compile Include="Models\Raspisanie\Film.cs" />
     <Compile Include="Models\Raspisanie\Cinema.cs" />
-    <Compile Include="Models\Kino\FilmYears.cs" />
+    <Compile Include="Models\Enum\FilmYears.cs" />
     <Compile Include="Models\Raspisanie\KinoAfishaContext.cs" />
     <Compile Include="Models\Raspisanie\Kino.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -168,6 +170,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -200,10 +203,23 @@
     <Content Include="Views\Shared\EditorTemplates\MultipleDropDownList.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\HttpPostedFileBase.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Object.cshtml" />
+    <Content Include="Views\Cinemas\Create.cshtml" />
+    <Content Include="Views\Cinemas\Edit.cshtml" />
+    <Content Include="Views\Cinemas\Index.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultipleSelect.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\RadioList.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\TextArea.cshtml" />
+    <Content Include="Views\Kinos\Detail.cshtml" />
+    <Content Include="Views\Formats\Create.cshtml" />
+    <Content Include="Views\Formats\Edit.cshtml" />
+    <Content Include="Views\Formats\Index.cshtml" />
+    <Content Include="Views\Descriptions\Create.cshtml" />
+    <Content Include="Views\Descriptions\Edit.cshtml" />
+    <Content Include="Views\Descriptions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\TimeSessions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -219,14 +235,11 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202111221702017_Init1.resx">
-      <DependentUpon>202111221702017_Init1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111282126375_Init2.resx">
+      <DependentUpon>202111282126375_Init2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111221705219_Init2.resx">
-      <DependentUpon>202111221705219_Init2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111221708154_Init3.resx">
-      <DependentUpon>202111221708154_Init3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111282149166_Init3.resx">
+      <DependentUpon>202111282149166_Init3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

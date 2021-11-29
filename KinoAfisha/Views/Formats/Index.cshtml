@@ -1,0 +1,34 @@
+﻿@using KinoAfisha.Models
+@using WebAppAspNetMvcCodeFirst.Models
+@using WebAppAspNetMvcCodeFirst.Extensions
+@model List<Format>
+
+<h1><b>Форматы</b></h1>
+
+@Html.ActionLink("Добавить запись", "Create", "Formats")
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+
+            <th>Форматы</th>
+
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var format in Model)
+        {
+            <tr>
+                <td>@format.Name</td>
+
+
+
+                <td>
+                    @Html.ActionLink("Удалить", "Delete", "Formats", new { id = format.Id }, new { })
+                    @Html.ActionLink("Изменить", "Edit", "Formats", new { id = format.Id }, new { })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

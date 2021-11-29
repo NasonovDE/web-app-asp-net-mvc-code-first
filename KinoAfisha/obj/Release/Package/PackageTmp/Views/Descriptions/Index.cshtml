@@ -1,0 +1,44 @@
+﻿@using KinoAfisha.Models
+@using WebAppAspNetMvcCodeFirst.Models
+@using WebAppAspNetMvcCodeFirst.Extensions
+@model List<Description>
+
+    <h1><b>Кинокомпании</b></h1>
+
+@Html.ActionLink("Добавить запись", "Create", "Descriptions")
+
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>
+                Описание Кинокомпании
+            </th>
+            <th>
+                Фильмы
+            </th>
+            <th>
+                Дополнительно
+            </th>
+           
+            <th>
+                Действия
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var description in Model)
+        {
+        <tr>
+            <td>@description.DescriptionCinemaCorporation</td>
+            <td>@description.DescriptionAllFilms</td>
+            <td>@description.DescriptionAllActors</td>
+            
+
+            <td>
+                @Html.ActionLink("Удалить", "Delete", "Descriptions", new { id = description.Id }, new { })
+                @Html.ActionLink("Изменить", "Edit", "Descriptions", new { id = description.Id }, new { })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

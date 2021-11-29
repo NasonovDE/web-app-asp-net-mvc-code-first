@@ -1,0 +1,51 @@
+﻿@using KinoAfisha.Models
+@model Kino
+
+
+<table>
+    <tbody>
+        <tr>
+
+            <td>
+                <h1><u>@Model.Description.Name</u></h1>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <h3>Аннотация</h3>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <p>
+                    <span><b>Описание Кинокомпании</b></span>
+                    <span><pre style="width: auto; white-space: pre-wrap;">@Model.Description.DescriptionCinemaCorporation</pre></span>
+                </p>
+                <p>
+                    <span><b>Фильмы</b></span>
+                    <span><pre style="width: auto; white-space: pre-wrap;">@Model.Description.DescriptionAllFilms</pre></span>
+                </p>
+                <p>
+                    <span><b>Дополнительно</b></span>
+                    <span><pre style="width: auto; white-space: pre-wrap;">@Model.Description.DescriptionAllActors</pre></span>
+                </p>
+
+
+
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+@Html.ActionLink("На главную", "Index", "Kinos")
+<br>
+@Html.ActionLink("Изменить кинокомпанию", "Index", "Descriptions")
+
+
+<hr />
+
+
+<sub><i>Описание может быть не точным</i></sub>

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using KinoAfisha.Models;
+using WebAppAspNetMvcCodeFirst.Extensions;
 
 
 
@@ -35,6 +37,11 @@ namespace KinoAfisha.Controllers
    
             var db = new KinoAfishaContext();
 
+            if (model.FormatIds != null && model.FormatIds.Any())
+            {
+                var nationality = db.Formats.Where(s => model.FormatIds.Contains(s.Id)).ToList();
+                model.Formats = nationality;
+            }
 
             if (model.FilmCoverFile != null)
             {
@@ -109,6 +116,13 @@ namespace KinoAfisha.Controllers
             destination.NameFilm = sourse.NameFilm;
             destination.FilmYears = sourse.FilmYears;
 
+            if (destination.Formats != null)
+                destination.Formats.Clear();
+
+            if (sourse.FormatIds != null && sourse.FormatIds.Any())
+                destination.Formats = db.Formats.Where(s => sourse.FormatIds.Contains(s.Id)).ToList();
+
+
             if (sourse.FilmCoverFile != null)
             {
                 var image = db.FilmCovers.FirstOrDefault(x => x.Id == sourse.Id);
@@ -145,5 +159,37 @@ namespace KinoAfisha.Controllers
 
             return File(new MemoryStream(image.Data), image.ContentType);
         }
+
+
+        [HttpPost]
+        public void Upload()  //Here just store 'Image' in a folder in Project Directory 
+                              //  name 'UplodedFiles'
+        {
+            foreach (string file in Request.Files)
+            {
+                var postedFile = Request.Files[file];
+                postedFile.SaveAs(Server.MapPath("~/UploadedFiles/") + Path.GetFileName(postedFile.FileName));
+            }
+        }
+        public ActionResult List() //I retrive Images List by using this Controller
+        {
+            var uploadedFiles = new List<FilmCover>();
+
+            var files = Directory.GetFiles(Server.MapPath("~/UploadedFiles"));
+
+            foreach (var file in files)
+            {
+                var fileInfo = new FileInfo(file);
+
+                var picture = new FilmCover() { FileName = Path.GetFileName(file) };
+                picture.Size = fileInfo.Length;
+
+                picture.Path = ("~/UploadedFiles/") + Path.GetFileName(file);
+                uploadedFiles.Add(picture);
+            }
+
+            return View(uploadedFiles);
+        }
     }
+
 }

@@ -3,7 +3,7 @@
 @model List<Kino>
 
 
-<h3>Афиша</h3>
+    <h1><b>Афиша</b></h1>
 
 @Html.ActionLink("Добавить запись", "Create", "Kinos")
 
@@ -11,9 +11,9 @@
     <thead>
         <tr>
             <th>Обложка</th>
+            <th>Кинокомпания</th>
             <th>Название</th>
             <th>Цена</th>
-            <th>Билетов в наличии</th>
             <th>Место показа</th>
             <th>Дата сеанса</th>
             <th>Время сеанса</th>
@@ -29,11 +29,15 @@
             <td><img src="/Films/GetImage/@kino.Id" style="max-width: 100px; max-height: 200px;" /></td>
 
             <td>
-                @string.Join("", kino.Films.Select(x => $"{x.NameFilm}"))
+                <a href="/Kinos/Detail/@kino.Id">@kino.Description.Name</a>
+
+            </td>
+            <td>
+                @string.Join(", ", kino.Films.Select(x => $"{x.NameFilm}"))
             </td>
             <td>@kino.Price</td>
-            <td>@kino.NumberOfBilets</td>
-            <td>@kino.Cinema.GetDisplayValue()</td>
+
+            <td> @string.Join(", ", kino.Cinemas.Select(x => $"{x.CinemaPlace}"))</td>
             <td>
                 @(kino.NextArrivalDate.HasValue ? kino.NextArrivalDate.Value.ToString("ddd, dd-MM-yyyy") : "")
             </td>
@@ -48,3 +52,13 @@
         }
     </tbody>
 </table>
+<footer>
+    <dl>
+        <dt>Дополнительная информация:</dt>
+    </dl>
+    <ol type="I">
+        <li><h6><i>Данная работа сделана в ознакомительных целях</i></h6></li>
+        <li><h6><i>Все расписания вымышлены, а совпадения случайны</i></h6></li>
+    </ol>
+
+</footer>

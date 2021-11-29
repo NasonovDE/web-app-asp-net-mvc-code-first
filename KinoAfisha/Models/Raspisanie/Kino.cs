@@ -30,7 +30,7 @@ namespace KinoAfisha.Models
         public List<int> FilmIds { get; set; }
         [Required]
         [Display(Name = "Название", Order = 5)]
-        [UIHint("MultipleDropDownList")]
+        [UIHint("DropDownList")]
         [TargetProperty("FilmIds")]
         [NotMapped]
         public IEnumerable<SelectListItem> FilmDictionary
@@ -61,41 +61,36 @@ namespace KinoAfisha.Models
         [Display(Name = "Цена", Order = 10)]
         public decimal Price { get; set; }
 
-        /// <summary>
-        /// Количество билетов
-        /// </summary> 
-        
-        [Display(Name = "Количество билетов", Order = 30)]
-        public int NumberOfBilets { get; set; }
+
 
         /// <summary>
         /// Место показа
         /// </summary> 
 
         [ScaffoldColumn(false)]
-        public Cinema Cinema { get; set; }
+        public virtual ICollection<Cinema> Cinemas{ get; set; }
+        [ScaffoldColumn(false)]
+        public List<int> CinemaIds { get; set; }
         [Required]
-        [Display(Name = "Место показа", Order = 20)]
-        [UIHint("DropDownList")]
-        [TargetProperty("Cinema")]
+        [Display(Name = "Место показа", Order = 5)]
+        [UIHint("MultipleDropDownList")]
+        [TargetProperty("CinemaIds")]
         [NotMapped]
         public IEnumerable<SelectListItem> CinemaDictionary
         {
             get
             {
-                var dictionary = new List<SelectListItem>();
+                var db = new KinoAfishaContext();
+                var query = db.Cinemas;
 
-                foreach (Cinema type in Enum.GetValues(typeof(Cinema)))
+                if (query != null)
                 {
-                    dictionary.Add(new SelectListItem
-                    {
-                        Value = ((int)type).ToString(),
-                        Text = type.GetDisplayValue(),
-                        Selected = type == Cinema
-                    });
+                    var Ids = query.Where(s => s.Kinos.Any(ss => ss.Id == Id)).Select(s => s.Id).ToList();
+                    var dictionary = new List<SelectListItem>();
+                    dictionary.AddRange(query.ToSelectList(c => c.Id, c => $"{c.CinemaPlace}", c => Ids.Contains(c.Id)));
+                    return dictionary;
                 }
-
-                return dictionary;
+                return new List<SelectListItem> { new SelectListItem { Text = "", Value = "" } };
             }
         }
 
@@ -117,7 +112,34 @@ namespace KinoAfisha.Models
         [Display(Name = "Время сеанса", Order = 40)]
         public DateTime? KinoTime { get; set; }
 
+        /// <summary>
+        /// Кинокомпания
+        /// </summary> 
+        [ScaffoldColumn(false)]
+        public int DescriptionId { get; set; }
+        [ScaffoldColumn(false)]
+        public virtual Description Description { get; set; }
+        [Display(Name = "Кинокомпании", Order = 2)]
+        [UIHint("RadioList")]
+        [TargetProperty("DescriptionId")]
+        [NotMapped]
+        public IEnumerable<SelectListItem> DescriptionDictionary
+        {
+            get
+            {
+                var db = new KinoAfishaContext();
+                var query = db.Descriptions;
 
+                if (query != null)
+                {
+                    var dictionary = new List<SelectListItem>();
+                    dictionary.AddRange(query.OrderBy(d => d.Name).ToSelectList(c => c.Id, c => c.Name, c => c.Id == DescriptionId));
+                    return dictionary;
+                }
+
+                return new List<SelectListItem> { new SelectListItem { Text = "", Value = "" } };
+            }
+        }
         /// <summary>
         /// Дата создания записи
         /// </summary> 

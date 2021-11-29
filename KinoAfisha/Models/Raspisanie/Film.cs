@@ -24,12 +24,13 @@ namespace KinoAfisha.Models
         [Required]
         [Display(Name = "Название", Order = 5)]
         public string NameFilm { get; set; }
-        
-      
+
+
 
         /// <summary>
         /// Возрастное ограничение
         /// </summary> 
+        [Required]
         [ScaffoldColumn(false)]
         public FilmYears FilmYears{ get; set; }
 
@@ -68,10 +69,43 @@ namespace KinoAfisha.Models
         public HttpPostedFileBase FilmCoverFile { get; set; }
 
         /// <summary>
-        /// Кино название фильмов
+        /// Расписание кино
         /// </summary> 
         [ScaffoldColumn(false)]
         public virtual ICollection<Kino> Kinos{ get; set; }
+
+        /// <summary>
+        /// Формат
+        /// </summary> 
+        [ScaffoldColumn(false)]
+        public virtual ICollection<Format> Formats { get; set; }
+
+        [ScaffoldColumn(false)]
+        public List<int> FormatIds { get; set; }
+
+        [Display(Name = "Форматы", Order = 55)]
+        [UIHint("MultipleSelect")]
+        [TargetProperty("FormatIds")]
+        [NotMapped]
+        public IEnumerable<SelectListItem> FormatDictionary
+        {
+            get
+            {
+                var db = new KinoAfishaContext();
+                var query = db.Formats;
+
+                if (query != null)
+                {
+                    var Ids = query.Where(s => s.Films.Any(ss => ss.Id == Id)).Select(s => s.Id).ToList();
+                    var dictionary = new List<SelectListItem>();
+                    dictionary.AddRange(query.ToSelectList(c => c.Id, c => $"{c.Name}", c => Ids.Contains(c.Id)));
+                    return dictionary;
+                }
+
+                return new List<SelectListItem> { new SelectListItem { Text = "", Value = "" } };
+            }
+        }
+
     }
 }
 
